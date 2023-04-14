@@ -11,14 +11,14 @@ const WrappedSingleListItem = ({ index, isSelected, onClickHandler, text }) => {
   return bool ? (
     <li
       style={{ backgroundColor: "green" }}
-      onClick={() => onClickHandler(index)}
+      onClick={()=> onClickHandler(index)}
     >
       {text}{" "}
     </li>
   ) : (
     <li
       style={{ backgroundColor: "red" }}
-      onClick={() => onClickHandler(index)}
+      onClick={()=> onClickHandler(index)}
     >
       {text}{" "}
     </li>
@@ -35,10 +35,10 @@ WrappedSingleListItem.propTypes = {
 const SingleListItem = memo(WrappedSingleListItem);
 
 const WrappedListComponent = ({ items }) => {
-  const [color, setColor] = useState(false);
+  const [selectIndex, setSelectIndex] = useState(false);
 
   const handleClick = (index) => {
-    setColor(index);
+    setSelectIndex(index);
   };
 
   return (
@@ -48,7 +48,7 @@ const WrappedListComponent = ({ items }) => {
           onClickHandler={(index) => handleClick(index)}
           text={item.text}
           index={index}
-          isSelected={color}
+          isSelected={selectIndex}
           key={index}
         />
       ))}
@@ -65,7 +65,7 @@ WrappedListComponent.propTypes = {
 };
 
 WrappedListComponent.defaultProps = {
-  items: null,
+  items: ["Abhinav"],
 };
 
 const List = memo(WrappedListComponent);
